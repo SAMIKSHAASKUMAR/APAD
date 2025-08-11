@@ -13,23 +13,22 @@ h2 {
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* box model property: shadow */
-  border: 1px solid #ccc;                    /* box model property: border */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); 
+  border: 1px solid #ccc;                    
 }
 
-/* ID selector styling */
+/* Create at least one id, apply it to an element, and style it. */
 #experience {
   border: 2px solid #2980b9;  /* box model */
   background-color: #f0f8ff;
 }
 
-/* Also style #education similarly to #experience for consistent backgrounds */
 #education {
   border: 2px solid #2980b9;
   background-color: #f0f8ff;
 }
 
-/* Education item flex layout and spacing */
+
 .edu-item {
   display: flex;
   align-items: center;
@@ -40,7 +39,6 @@ h2 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Education photo styling */
 .edu-photo {
   width: 80px;
   height: 80px;
@@ -50,18 +48,17 @@ h2 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Experience items margin */
 .exp-item {
   margin-bottom: 15px;
 }
 
-/* Highlight class for hobbies */
+/* Create at least one class, apply it to at least two elements, and style it. */
 .highlight {
   color: darkblue;
   font-weight: bold;
 }
 
-/* Link styling and hover color */
+/* Use a CSS selector to change the color of <a> when you hover the cursor over it. */
 a {
   color: #2980b9;
   text-decoration: none;
@@ -73,13 +70,11 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Tag selector for h3 */
 h3 {
   color: #2c3e50;
   margin-bottom: 5px;
 }
 
-/* Body styling */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;

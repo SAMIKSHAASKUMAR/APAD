@@ -1,79 +1,67 @@
-/* Tag selector styling */
-h3 {
+/* CSS selector styling for an HTML tag */
+h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
   color: #2c3e50;
-  margin-bottom: 5px;
 }
 
-/* Class applied to multiple elements */
+/* Class applied to multiple elements (sections) */
+.section-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* box model property: shadow */
+  border: 1px solid #ccc;                    /* box model property: border */
+}
+
+/* ID selector styling */
+#experience {
+  border: 2px solid #2980b9;  /* box model */
+  background-color: #f0f8ff;
+}
+
+/* Also style #education similarly to #experience for consistent backgrounds */
+#education {
+  border: 2px solid #2980b9;
+  background-color: #f0f8ff;
+}
+
+/* Education item flex layout and spacing */
 .edu-item {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 8px;          /* box model property */
+  border-radius: 8px;
   background-color: #f9fbfd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ID selector styling */
-#experience {
-  margin: 30px 20px;
-  padding: 20px;
-  border: 2px solid #2980b9;  /* box model property */
-  border-radius: 10px;
-  background-color: #fff;
-}
-
+/* Education photo styling */
 .edu-photo {
   width: 80px;
   height: 80px;
   object-fit: contain;
   margin-right: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Experience items margin */
 .exp-item {
   margin-bottom: 15px;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  margin: 0;
-  padding: 0;
-}
-
-#intro {
-  background-color: white;
-  padding: 20px;
-  text-align: center;
-  margin: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-#intro img {
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  margin-top: 15px;
-}
-
-.section {
-  margin: 20px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
+/* Highlight class for hobbies */
 .highlight {
   color: darkblue;
   font-weight: bold;
 }
 
+/* Link styling and hover color */
 a {
   color: #2980b9;
   text-decoration: none;
@@ -83,4 +71,20 @@ a {
 a:hover {
   color: #e74c3c;
   text-decoration: underline;
+}
+
+/* Tag selector for h3 */
+h3 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+/* Body styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  margin: 0;
+  padding: 0;
 }

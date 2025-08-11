@@ -1,26 +1,86 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Tag selector styling */
+h3 {
+  color: #2c3e50;
+  margin-bottom: 5px;
 }
 
-.highlight {
-    color: darkblue;
-    font-weight: bold;
+/* Class applied to multiple elements */
+.edu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;          /* box model property */
+  background-color: #f9fbfd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ID selector styling */
+#experience {
+  margin: 30px 20px;
+  padding: 20px;
+  border: 2px solid #2980b9;  /* box model property */
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.edu-photo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-right: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.exp-item {
+  margin-bottom: 15px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  margin: 0;
+  padding: 0;
 }
 
 #intro {
-    background-color: white;
-    padding: 20px;
-    text-align: center;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-a:hover {
-    color: red;
+#intro img {
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 15px;
 }
 
 .section {
-    margin: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+  margin: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.highlight {
+  color: darkblue;
+  font-weight: bold;
+}
+
+a {
+  color: #2980b9;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #e74c3c;
+  text-decoration: underline;
 }

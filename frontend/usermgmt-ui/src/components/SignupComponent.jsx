@@ -1,32 +1,61 @@
-// src/components/SignupComponent.jsx
 import { useState } from "react";
-import { authPost } from "../utils/apiHelpers";
+import { userPost } from "../utils/apiHelpers";
 
 export default function SignupComponent() {
   const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const e = {};
+    if (!userid.trim()) e.userid = "User ID is required";
+    if (!password.trim()) e.password = "Password is required";
+    if (password && password.length < 4) {
+      e.password = "Password must be at least 4 characters";
+    }
+    return e;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { ok, data } = await authPost("signup", {
+    setMsg("");
+    const eobj = validate();
+    setErrors(eobj);
+    if (Object.keys(eobj).length > 0) return;
+
+    const { ok, data } = await userPost("signup", {
       username: userid,
       password: password,
     });
-    setMsg(data.message || (ok ? "Signup successful" : "Signup failed"));
+
+    if (!ok) {
+      setMsg(data.message || "Signup failed");
+      return;
+    }
+
+    setMsg(data.message || "User registered successfully");
+  };
+
+  const handleCancel = () => {
+    setUserid("");
+    setPassword("");
+    setMsg("");
+    setErrors({});
   };
 
   return (
-    <div className="auth-card">
-      <h2 className="auth-title">Create User</h2>
+    <div className="card">
+      <h2 className="card-title">Create User</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label>User ID</label>
           <input
             value={userid}
             onChange={(e) => setUserid(e.target.value)}
-            placeholder="Enter user id"
+            
           />
+          {errors.userid && <div className="field-error">{errors.userid}</div>}
         </div>
         <div className="form-row">
           <label>Password</label>
@@ -34,27 +63,20 @@ export default function SignupComponent() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
           />
+          {errors.password && <div className="field-error">{errors.password}</div>}
         </div>
         <div className="btn-row">
           <button type="submit" className="btn-primary">
             Sign Up
           </button>
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={() => {
-              setUserid("");
-              setPassword("");
-              setMsg("");
-            }}
-          >
+          <button type="button" onClick={handleCancel} className="btn-secondary">
             Cancel
           </button>
         </div>
       </form>
-      {msg && <p className="message">{msg}</p>}
+
+      {msg && <div className="msg-success">{msg}</div>}
     </div>
   );
 }

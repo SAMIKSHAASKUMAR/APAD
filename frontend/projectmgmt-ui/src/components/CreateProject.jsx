@@ -5,17 +5,25 @@ export default function CreateProject() {
   const [projectid, setProjectid] = useState("");
   const [projectname, setProjectname] = useState("");
   const [description, setDescription] = useState("");
-  const [userid, setUserid] = useState(""); // NEW
+  const [userid, setUserid] = useState("");
   const [msg, setMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMsg("");
+
+    if (!projectid.trim() || !projectname.trim() || !description.trim() || !userid.trim()) {
+      setMsg("All fields are mandatory.");
+      return;
+    }
+
     const { ok, data } = await projectPost("createproject", {
       projectid,
       projectname,
       description,
-      userid, // backend will auto-add to authorized_users
+      userid,
     });
+
     setMsg(data.message || (ok ? "Project created" : "Error"));
   };
 
@@ -24,23 +32,23 @@ export default function CreateProject() {
       <h2 className="card-title">Create Project</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
-          <label>Project ID</label>
+          <label>Project ID *</label>
           <input value={projectid} onChange={(e) => setProjectid(e.target.value)} />
         </div>
         <div className="form-row">
-          <label>Project Name</label>
+          <label>Project Name *</label>
           <input value={projectname} onChange={(e) => setProjectname(e.target.value)} />
         </div>
         <div className="form-row">
-          <label>Description</label>
+          <label>Description *</label>
           <input value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div className="form-row">
-          <label>User ID (creator)</label>
+          <label>User ID  *</label>
           <input
             value={userid}
             onChange={(e) => setUserid(e.target.value)}
-            placeholder="aditi123"
+            
           />
         </div>
         <div className="btn-row">

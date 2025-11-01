@@ -8,13 +8,22 @@ export default function ViewProject() {
 
   const handleFetch = async (e) => {
     e.preventDefault();
-    const { ok, data } = await projectGet("projectstatus", { projectid });
-    if (!ok) {
-      setMsg(data.message || "Error fetching project");
-      setProject(null);
+    setMsg("");
+    setProject(null);
+
+    if (!projectid.trim()) {
+      setMsg("Project ID is required.");
       return;
     }
-    setMsg("");
+
+    // IMPORTANT: pass just "projectstatus" (no leading /)
+    const { ok, data } = await projectGet("projectstatus", { projectid });
+
+    if (!ok) {
+      setMsg(data.message || "Error fetching project");
+      return;
+    }
+
     setProject(data.project);
   };
 
@@ -23,8 +32,12 @@ export default function ViewProject() {
       <h2 className="card-title">Project Status</h2>
       <form onSubmit={handleFetch}>
         <div className="form-row">
-          <label>Project ID</label>
-          <input value={projectid} onChange={(e) => setProjectid(e.target.value)} />
+          <label>Project ID *</label>
+          <input
+            value={projectid}
+            onChange={(e) => setProjectid(e.target.value)}
+            
+          />
         </div>
         <div className="btn-row">
           <button type="submit" className="btn-primary">

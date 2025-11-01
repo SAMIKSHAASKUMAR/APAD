@@ -8,6 +8,13 @@ export default function AddUserToProject() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMsg("");
+
+    if (!projectid.trim() || !userid.trim()) {
+      setMsg("Project ID and User ID are mandatory.");
+      return;
+    }
+
     const { ok, data } = await projectPost("addUserProject", {
       projectid,
       userid,
@@ -20,11 +27,11 @@ export default function AddUserToProject() {
       <h2 className="card-title">Add User to Project</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
-          <label>Project ID</label>
+          <label>Project ID *</label>
           <input value={projectid} onChange={(e) => setProjectid(e.target.value)} />
         </div>
         <div className="form-row">
-          <label>User ID</label>
+          <label>User ID *</label>
           <input value={userid} onChange={(e) => setUserid(e.target.value)} />
         </div>
         <div className="btn-row">

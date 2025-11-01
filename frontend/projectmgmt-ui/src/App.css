@@ -36,6 +36,7 @@ body {
 
 .main {
   padding: 48px 0;
+  padding-bottom: 80px; /* space for fixed footer */
 }
 
 .card {
@@ -106,4 +107,17 @@ body {
   margin-right: 6px;
   margin-bottom: 6px;
   font-size: 0.7rem;
+}
+
+/* footer we wanted */
+.footer {
+  background: #4b0082;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.85rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

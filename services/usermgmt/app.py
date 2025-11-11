@@ -7,11 +7,14 @@ from pymongo import MongoClient
 import certifi
 
 # 1) load env
-load_dotenv()
+#load_dotenv()
 
 MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
     raise RuntimeError("MONGO_URI not set in .env")
+print("="*50, flush=True)
+print(f"DEBUG: MONGODB_URI loaded in app.py is: {MONGO_URI}", flush=True)
+print("="*50, flush=True)
 
 client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
 users_col = client["Users"]["Users"]

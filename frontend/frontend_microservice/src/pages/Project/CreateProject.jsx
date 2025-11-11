@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { projectPost } from "../utils/apiHelpers";
+// Make sure this path is correct for your file structure
+import { projectPost } from "../../utils/apiHelpers";
+import "../Placeholder.css"; // (For styles)
 
-export default function CreateProject() {
+export default function CreateProjectPage() {
   const [projectid, setProjectid] = useState("");
   const [projectname, setProjectname] = useState("");
   const [description, setDescription] = useState("");
@@ -17,11 +19,13 @@ export default function CreateProject() {
       return;
     }
 
+    // FIX 1: The endpoint is "createproject" (no underscore)
+    // FIX 2: The JSON key is "created_by" (to match Python)
     const { ok, data } = await projectPost("createproject", {
       projectid,
       projectname,
       description,
-      userid,
+      created_by: userid, 
     });
 
     setMsg(data.message || (ok ? "Project created" : "Error"));
@@ -48,7 +52,6 @@ export default function CreateProject() {
           <input
             value={userid}
             onChange={(e) => setUserid(e.target.value)}
-            
           />
         </div>
         <div className="btn-row">

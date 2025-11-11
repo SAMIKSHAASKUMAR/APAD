@@ -1,0 +1,62 @@
+version: '3.8'
+
+networks:
+  haas-network:
+    driver: bridge
+
+services:
+  # 1. The Frontend Service
+  frontend:
+    build:
+      context: ./frontend/frontend_microservice
+      dockerfile: dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - haas-network
+    depends_on:
+      - user-service
+      - project-service
+      - inventory-service
+
+  # 2. The User Backend Service
+  user-service:
+    build:
+      context: ./services/usermgmt
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    networks:
+      - haas-network
+    # THIS IS THE FIX:
+    # Point to the .env file *inside* the usermgmt folder
+    env_file:
+      - ./services/usermgmt/.env
+
+  # 3. The Project Backend Service
+  project-service:
+    build:
+      context: ./services/projectmgmt
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    networks:
+      - haas-network
+    # THIS IS THE FIX:
+    # Point to the .env file *inside* the projectmgmt folder
+    env_file:
+      - ./services/projectmgmt/.env
+
+  # 4. The Inventory Backend Service
+  inventory-service:
+    build:
+      context: ./services/inventorymgmt
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    networks:
+      - haas-network
+    # THIS IS THE FIX:
+    # Point to the .env file *inside* the inventorymgmt folder
+    env_file:
+      - ./services/inventorymgmt/.env

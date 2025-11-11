@@ -1,0 +1,42 @@
+# STAGE 1: Build the React app
+# We use a full Node.js image to install dependencies and build the static files
+FROM node:18-alpine AS builder
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json first
+# This caches our dependencies and speeds up future builds
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application source code
+COPY . .
+
+# Build the production version of the app
+RUN npm run build
+
+# STAGE 2: Serve the app with Nginx
+# We use a very lightweight Nginx image for the final, running container
+FROM nginx:1.25-alpine
+
+# Set the working directory in the Nginx container
+WORKDIR /usr/share/nginx/html
+
+# Remove the default Nginx welcome page
+RUN rm -rf ./*
+
+# Copy the static files (HTML, CSS, JS) from the 'builder' stage
+COPY --from=builder /app/build .
+
+# IMPORTANT: Copy our custom Nginx configuration
+# This file is necessary for React Router to work!
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80 (the default Nginx port)
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

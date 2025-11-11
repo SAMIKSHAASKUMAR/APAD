@@ -1,0 +1,13 @@
+/* A shared style for all our placeholder pages */
+.placeholder-page {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.placeholder-page h1 {
+  color: #2c3e50;
+  border-bottom: 2px solid #1abc9c;
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+}
